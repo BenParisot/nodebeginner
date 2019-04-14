@@ -1,4 +1,3 @@
-const querystring = require('querystring');
 const fs = require('fs');
 const formidable = require('formidable');
 
@@ -22,7 +21,6 @@ function start(response) {
   response.writeHead(200, { 'Content-Type': 'text/html' });
   response.write(body);
   response.end();
-
 }
 
 function upload(response, request) {
