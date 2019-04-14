@@ -34,10 +34,14 @@ function upload(response, request) {
     console.log('parsing done');
 
 
-    fs.rename(files.upload.path, '/test.png', function(error) {
+    fs.rename(files.upload.path, 'test.png', function(error) {
       if(error) {
-        fs.unlink('./test.png');
-        fs.rename(files.upload.path, './test.png');
+        fs.unlink('test.png', (err) => {
+          if(err) throw err;
+        });
+        fs.rename(files.upload.path, 'test.png', (err) => {
+          if(err) throw err;
+        });
       }
     });
 
@@ -51,7 +55,7 @@ function upload(response, request) {
 function show(response) {
   console.log('Request handler SHOW was called');
   response.writeHead(200, { 'Content-Type': 'image/png' });
-  fs.createReadStream('./truth.png').pipe(response);
+  fs.createReadStream('./test.png').pipe(response);
 }
 
 
